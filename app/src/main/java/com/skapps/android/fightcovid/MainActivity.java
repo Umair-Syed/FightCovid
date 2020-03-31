@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -12,6 +13,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         tabLayoutMediator.attach();
+
+
     }
 }

@@ -3,11 +3,16 @@ package com.skapps.android.fightcovid;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,6 +23,7 @@ import android.view.ViewGroup;
  */
 public class CountryFragment extends Fragment {
 
+    private ListViewAdapter mAdapter;
 
     public CountryFragment() {
         // Required empty public constructor
@@ -28,7 +34,24 @@ public class CountryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_country, container, false);
+        View view = inflater.inflate(R.layout.fragment_country, container, false);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ArrayList<Location> list = new ArrayList<>();
+        list.add(new Location(17, "Kerela"));
+        list.add(new Location(9, "Maharastra"));
+        list.add(new Location(8, "Rajasthan"));
+        list.add(new Location(17, "Srinagar"));
+
+
+        ListView listView = view.findViewById(R.id.list_country);
+        mAdapter = new ListViewAdapter(getContext(), list);
+
+        listView.setAdapter(mAdapter);
     }
 
 }
