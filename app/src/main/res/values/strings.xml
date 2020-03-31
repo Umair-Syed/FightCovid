@@ -6,4 +6,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="saved_state"></string>
+    <string name="LoginTitle">Please provide us some details </string>
 </resources>
