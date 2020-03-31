@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
@@ -48,6 +50,13 @@ public class CountryFragment extends Fragment {
         list.add(new Location(9, "Maharastra"));
         list.add(new Location(8, "Rajasthan"));
         list.add(new Location(17, "Srinagar"));
+
+        Collections.sort(list, new Comparator<Location>() {
+            @Override
+            public int compare(Location o1, Location o2) {
+                return Integer.compare(o1.getmCount(), o2.getmCount());
+            }
+        });
 
 
         ListView listView = getView().findViewById(R.id.list_country);
