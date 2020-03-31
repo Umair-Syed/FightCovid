@@ -39,15 +39,17 @@ public class StateFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         ArrayList<Location> list = new ArrayList<>();
         list.add(new Location(17, "Srinagar"));
         list.add(new Location(9, "Jammu"));
-        list.add(new Location(8, "Rajouri"));
-        list.add(new Location(17, "Srinagar"));
+        list.add(new Location(8, "Rajourui"));
+        list.add(new Location(17, "katwa"));
 
 
-        ListView listView = view.findViewById(R.id.list_state);
+        ListView listView = getView().findViewById(R.id.list_state);
         mAdapter = new ListViewAdapter(getContext(), list);
 
         listView.setAdapter(mAdapter);

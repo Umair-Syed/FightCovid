@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context=".CountryFragment">
 
+
+
     <ListView
         android:id="@+id/list_country"
         android:layout_width="match_parent"

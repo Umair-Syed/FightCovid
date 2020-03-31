@@ -40,7 +40,9 @@ public class CountryFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         ArrayList<Location> list = new ArrayList<>();
         list.add(new Location(17, "Kerela"));
         list.add(new Location(9, "Maharastra"));
@@ -48,10 +50,9 @@ public class CountryFragment extends Fragment {
         list.add(new Location(17, "Srinagar"));
 
 
-        ListView listView = view.findViewById(R.id.list_country);
+        ListView listView = getView().findViewById(R.id.list_country);
         mAdapter = new ListViewAdapter(getContext(), list);
 
         listView.setAdapter(mAdapter);
     }
-
 }

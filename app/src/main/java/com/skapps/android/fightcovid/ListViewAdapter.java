@@ -2,6 +2,7 @@ package com.skapps.android.fightcovid;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,14 @@ public class ListViewAdapter extends ArrayAdapter<Location> {
 
         Location currentLocation  = getItem(position);
 
+        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + "1");
+
         TextView countView = listItemView.findViewById(R.id.count);
-        countView.setText(currentLocation.getmCount());
+
+        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 3 ");
+        countView.setText(Integer.toString(currentLocation.getmCount()));
+
+        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 2 ");
 
         GradientDrawable magnitudeCircle = (GradientDrawable) countView.getBackground();
         int magnitudeColor = getMagnitudeColor(currentLocation.getmCount());
@@ -50,38 +57,27 @@ public class ListViewAdapter extends ArrayAdapter<Location> {
 
     private int getMagnitudeColor(int count) {
         int magnitudeColorResourceId;
-        switch (count) {
-            case 0:
-            case 1:
-                magnitudeColorResourceId = R.color.magnitude1;
-                break;
-            case 2:
-                magnitudeColorResourceId = R.color.magnitude2;
-                break;
-            case 3:
-                magnitudeColorResourceId = R.color.magnitude3;
-                break;
-            case 4:
-                magnitudeColorResourceId = R.color.magnitude4;
-                break;
-            case 5:
-                magnitudeColorResourceId = R.color.magnitude5;
-                break;
-            case 6:
-                magnitudeColorResourceId = R.color.magnitude6;
-                break;
-            case 7:
-                magnitudeColorResourceId = R.color.magnitude7;
-                break;
-            case 8:
-                magnitudeColorResourceId = R.color.magnitude8;
-                break;
-            case 9:
-                magnitudeColorResourceId = R.color.magnitude9;
-                break;
-            default:
-                magnitudeColorResourceId = R.color.magnitude10plus;
-                break;
+
+        if(count < 5){
+            magnitudeColorResourceId = R.color.magnitude1;
+        }else if(count < 10){
+            magnitudeColorResourceId = R.color.magnitude2;
+        }else if(count < 30){
+            magnitudeColorResourceId = R.color.magnitude3;
+        }else if(count < 60){
+            magnitudeColorResourceId = R.color.magnitude4;
+        }else if(count < 120){
+            magnitudeColorResourceId = R.color.magnitude5;
+        }else if(count < 240){
+            magnitudeColorResourceId = R.color.magnitude6;
+        }else if(count < 480){
+            magnitudeColorResourceId = R.color.magnitude7;
+        }else if(count < 900){
+            magnitudeColorResourceId = R.color.magnitude8;
+        }else if(count < 2000){
+            magnitudeColorResourceId = R.color.magnitude9;
+        }else{
+            magnitudeColorResourceId = R.color.magnitude10plus;
         }
 
         return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
