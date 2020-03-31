@@ -3,4 +3,7 @@
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#448AFF</color>
+    <color name="confirmed_color">#f01313</color>
+    <color name="recovered_color">#199e02</color>
+    <color name="deceased_color">#545454</color>
 </resources>
