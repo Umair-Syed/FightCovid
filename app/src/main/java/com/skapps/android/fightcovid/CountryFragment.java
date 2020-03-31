@@ -46,10 +46,10 @@ public class CountryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         ArrayList<Location> list = new ArrayList<>();
-        list.add(new Location(17, "Kerela"));
-        list.add(new Location(9, "Maharastra"));
-        list.add(new Location(8, "Rajasthan"));
-        list.add(new Location(17, "Srinagar"));
+        list.add(new Location(120, "Kerela"));
+        list.add(new Location(280, "Maharastra"));
+        list.add(new Location(80, "Rajasthan"));
+        list.add(new Location(55, "Jammu and kashmir"));
 
         Collections.sort(list, new Comparator<Location>() {
             @Override
@@ -57,6 +57,7 @@ public class CountryFragment extends Fragment {
                 return Integer.compare(o1.getmCount(), o2.getmCount());
             }
         });
+        Collections.reverse(list);
 
 
         ListView listView = getView().findViewById(R.id.list_country);

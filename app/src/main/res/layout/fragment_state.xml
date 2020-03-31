@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="1400"
+                android:text="55"
                 android:textColor="@color/confirmed_color" />
         </LinearLayout>
 
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="100"
+                android:text="5"
                 android:textColor="@color/recovered_color" />
         </LinearLayout>
 
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="20"
+                android:text="3"
                 android:textColor="@color/deceased_color" />
         </LinearLayout>
 

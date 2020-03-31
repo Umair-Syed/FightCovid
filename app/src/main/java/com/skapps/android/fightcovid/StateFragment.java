@@ -57,6 +57,7 @@ public class StateFragment extends Fragment {
                 return Integer.compare(o1.getmCount(), o2.getmCount());
             }
         });
+        Collections.reverse(list);
 
 
         ListView listView = getView().findViewById(R.id.list_state);
