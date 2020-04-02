@@ -1,94 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".StateFragment">
 
-    <LinearLayout
-        android:id="@+id/status_bar_state"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:layout_height="74dp">
 
-        <LinearLayout
-            android:layout_width="0dp"
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/statusTextStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="CONFIRMED"
+            android:textColor="@color/confirmed_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                style="@style/statusTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="CONFIRMED"
-                android:textColor="@color/confirmed_color" />
-
-            <TextView
-                android:id="@+id/confirmed_count_state"
-                style="@style/CountStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="1400"
-                android:textColor="@color/confirmed_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/confirmed_count_state"
+            style="@style/CountStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:text="14"
+            android:textColor="@color/confirmed_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <TextView
-                style="@style/statusTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="RECOVERED"
-                android:textColor="@color/recovered_color" />
-
-            <TextView
-                android:id="@+id/recovered_count_state"
-                style="@style/CountStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="100"
-                android:textColor="@color/recovered_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/confirmed_count_state_delta"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_gravity="bottom"
+            android:text="+2"
+            android:textColor="@color/confirmed_color"
+            app:layout_constraintBottom_toBottomOf="@+id/confirmed_count_state"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/confirmed_count_state"
+            app:layout_constraintTop_toTopOf="@+id/confirmed_count_state" />
 
-            <TextView
-                style="@style/statusTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="DECEASED"
-                android:textColor="@color/deceased_color" />
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/statusTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="RECOVERED"
+            android:textColor="@color/recovered_color"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/deceased_count_state"
-                style="@style/CountStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="20"
-                android:textColor="@color/deceased_color" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/recovered_count_state"
+            style="@style/CountStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:text="10"
+            android:textColor="@color/recovered_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/recovered_count_state_delta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="+3"
+            android:textColor="@color/recovered_color"
+            app:layout_constraintBottom_toBottomOf="@+id/recovered_count_state"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/recovered_count_state"
+            app:layout_constraintTop_toTopOf="@+id/recovered_count_state" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/statusTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="DECEASED"
+            android:textColor="@color/deceased_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/deceased_count_state"
+            style="@style/CountStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:text="20"
+            android:textColor="@color/deceased_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+        <TextView
+            android:id="@+id/deceased_count_state_delta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="+1"
+            android:textColor="@color/deceased_color"
+            app:layout_constraintBottom_toBottomOf="@+id/deceased_count_state"
+            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/deceased_count_state"
+            app:layout_constraintTop_toTopOf="@+id/deceased_count_state" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ListView
         android:id="@+id/list_state"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:entries="@android:array/imProtocols" />
 
 </LinearLayout>

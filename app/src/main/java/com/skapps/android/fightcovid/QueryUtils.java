@@ -3,6 +3,7 @@ package com.skapps.android.fightcovid;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,7 +24,7 @@ import java.util.List;
  */
 public class QueryUtils {
 
-    public static String preferredState = "Jammu and Kashmir";
+    public static String preferredState = "Maharashtra";
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
@@ -41,7 +42,7 @@ public class QueryUtils {
         return url;
     }
 
-    public static List<Location> fetchCovidData(String requestUrl) {
+    public static List<Location> fetchCovidStateData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -54,13 +55,13 @@ public class QueryUtils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
-        List<Location> locations = extractFromJson(jsonResponse);
+        List<Location> locations = extractFromJsonStateData(jsonResponse);
 
         // Return the list of {@link Earthquake}s
         return locations;
     }
 
-    private static List<Location> extractFromJson(String covidJson) {
+    private static List<Location> extractFromJsonStateData(String covidJson) {
 
         if (TextUtils.isEmpty(covidJson)) {
             return null;
@@ -92,6 +93,57 @@ public class QueryUtils {
         }
 
         return locations;
+
+    }
+
+    public static List<Integer> fetchStateBarData (String requestUrl) {
+        // Create URL object
+        URL url = createUrl(requestUrl);
+
+        // Perform HTTP request to the URL and receive a JSON response back
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(url);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+        }
+
+        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        List<Integer> barData = extractFromJsonStateBarData(jsonResponse);
+
+        // Return the list of {@link Earthquake}s
+        return barData;
+    }
+
+    private static List<Integer> extractFromJsonStateBarData(String covidJson) {
+
+        if (TextUtils.isEmpty(covidJson)) {
+            return null;
+        }
+
+        List<Integer> data = new ArrayList<>();
+
+        try{
+           JSONObject baseJsonResponse = new JSONObject(covidJson);
+            JSONArray stateswise = baseJsonResponse.getJSONArray("statewise");
+
+            for(int i = 0; i < stateswise.length(); i++){
+                JSONObject state = stateswise.getJSONObject(i);
+                if (state.getString("state").equals(preferredState)){
+                    data.add(state.getInt("confirmed"));
+                    data.add(state.getJSONObject("delta").getInt("confirmed"));
+                    data.add(state.getInt("recovered"));
+                    data.add(state.getJSONObject("delta").getInt("recovered"));
+                    data.add(state.getInt("deaths"));
+                    data.add(state.getJSONObject("delta").getInt("deaths"));
+                }
+            }
+
+        }catch (JSONException e) {
+            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+        }
+
+        return data;
 
     }
 

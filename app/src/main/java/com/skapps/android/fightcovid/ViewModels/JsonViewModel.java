@@ -1,10 +1,13 @@
-package com.skapps.android.fightcovid;
+package com.skapps.android.fightcovid.ViewModels;
 
 
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.skapps.android.fightcovid.Location;
+import com.skapps.android.fightcovid.QueryUtils;
 
 import java.util.List;
 
@@ -37,7 +40,7 @@ public class JsonViewModel extends AndroidViewModel {
 
             @Override
             protected List<Location> doInBackground(Void... voids) {
-                return QueryUtils.fetchCovidData("https://api.covid19india.org/state_district_wise.json");
+                return QueryUtils.fetchCovidStateData("https://api.covid19india.org/state_district_wise.json");
             }
 
             @Override

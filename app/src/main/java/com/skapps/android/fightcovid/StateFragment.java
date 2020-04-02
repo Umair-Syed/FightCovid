@@ -2,11 +2,14 @@ package com.skapps.android.fightcovid;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.skapps.android.fightcovid.ViewModels.JsonViewModel;
+import com.skapps.android.fightcovid.ViewModels.StateStatusVM;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -46,52 +49,48 @@ public class StateFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//         List<Location> list = new ArrayList<>();
-//        list.add(new Location(17, "Srinagar"));
-//        list.add(new Location(9, "Jammu"));
-//        list.add(new Location(8, "Rajourui"));
-//        list.add(new Location(17, "katwa"));
+        final TextView confirmedTV = getView().findViewById(R.id.confirmed_count_state);
+        final TextView confirmedDeltaTV = getView().findViewById(R.id.confirmed_count_state_delta);
+        final TextView recoveredTV = getView().findViewById(R.id.recovered_count_state);
+        final TextView recoveredDeltaTV = getView().findViewById(R.id.recovered_count_state_delta);
+        final TextView deceasedTV = getView().findViewById(R.id.deceased_count_state);
+        final TextView deceasedDeltaTV = getView().findViewById(R.id.deceased_count_state_delta);
 
-//        new AsyncTask<String, Void, List<Location>>(){
-//
-//            @Override
-//            protected List<Location> doInBackground(String... strings) {
-//
-//               return QueryUtils.fetchCovidData("https://api.covid19india.org/state_district_wise.json");
-//            }
-//
-//            @Override
-//            protected void onPostExecute(List<Location> locations) {
-//                Log.d("StateFrag", locations.get(0).getmLocation() + " " + locations.get(0).getmCount() );
-//            }
-//        }.execute();
+        StateStatusVM stateBarModel = new ViewModelProvider(this).get(StateStatusVM.class);
+        stateBarModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Integer>>() {
+            @Override
+            public void onChanged(List<Integer> integers) {
+                confirmedTV.setText(Integer.toString(integers.get(0)));
+                if(integers.get(1) == 0){
+                    confirmedDeltaTV.setVisibility(View.GONE);
+                }else {
+                    confirmedDeltaTV.setVisibility(View.VISIBLE);
+                    confirmedDeltaTV.setText("+"+integers.get(1));
+                }
 
-//        Collections.sort(list, new Comparator<Location>() {
-//            @Override
-//            public int compare(Location o1, Location o2) {
-//                return Integer.compare(o1.getmCount(), o2.getmCount());
-//            }
-//        });
+                recoveredTV.setText(Integer.toString(integers.get(2)));
+                if(integers.get(3) == 0){
+                    recoveredDeltaTV.setVisibility(View.GONE);
+                }else{
+                    recoveredDeltaTV.setVisibility(View.VISIBLE);
+                    recoveredDeltaTV.setText("+"+integers.get(3));
+                }
 
-//        final ListView listView = getView().findViewById(R.id.list_state);
-//        Log.d("statefragement", "before view model instance");
-//
-//
-//
-//        Log.d("statefragement", "afgter view model instance");
-//        model.getData().observe(this, new Observer<List<Location>>() {
-//            @Override
-//            public void onChanged(List<Location> locations) {
-//                mAdapter = new ListViewAdapter(getContext(), locations);
-//                listView.setAdapter(mAdapter);
-//            }
-//        });
+                deceasedTV.setText(Integer.toString(integers.get(4)));
+                if(integers.get(5) == 0){
+                    deceasedDeltaTV.setVisibility(View.GONE);
+                }else{
+                    recoveredDeltaTV.setVisibility(View.VISIBLE);
+                    deceasedDeltaTV.setText("+"+integers.get(5));
+                }
+
+            }
+        });
+
 
         final ListView listView = getView().findViewById(R.id.list_state);
-        Log.d("statefragement", "before view model instance");
 
         JsonViewModel model = new ViewModelProvider(this).get(JsonViewModel.class);
-        Log.d("statefragement", "afgter view model instance");
         model.getData().observe(getViewLifecycleOwner(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
