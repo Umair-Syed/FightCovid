@@ -1,10 +1,12 @@
-package com.skapps.android.fightcovid;
-
+package com.skapps.android.fightcovid.ViewModels;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.skapps.android.fightcovid.Location;
+import com.skapps.android.fightcovid.QueryUtils;
 
 import java.util.List;
 
@@ -13,14 +15,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 /**
- * Created by Syed Umair on 31/03/2020.
+ * Created by Syed Umair on 02/04/2020.
  */
-public class JsonViewModel extends AndroidViewModel {
-//    private final JsonLiveData data;
-    private MutableLiveData<List<Location>> loc = new MutableLiveData<>();
+public class JsonViewModelCountry extends AndroidViewModel {
 
+    private MutableLiveData<List<Location>> locationsStates = new MutableLiveData<>();
 
-    public JsonViewModel(Application application) {
+    public JsonViewModelCountry(Application application) {
 
         super(application);
         loadData();
@@ -28,7 +29,7 @@ public class JsonViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Location>> getData() {
-        return loc;
+        return locationsStates;
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -37,17 +38,15 @@ public class JsonViewModel extends AndroidViewModel {
 
             @Override
             protected List<Location> doInBackground(Void... voids) {
-                return QueryUtils.fetchCovidData("https://api.covid19india.org/state_district_wise.json");
+                return QueryUtils.fetchCovidCountryData("https://api.covid19india.org/data.json");
             }
 
             @Override
             protected void onPostExecute(List<Location> locations) {
                 Log.d("jsonviewmodel", locations.get(0).getmLocation() + " " + locations.get(0).getmCount() );
-                loc.setValue(locations);
+                locationsStates.setValue(locations);
             }
         }.execute();
 
     }
-
 }
-

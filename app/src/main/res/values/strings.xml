@@ -7,4 +7,5 @@
 
     <string name="saved_state"></string>
     <string name="LoginTitle">Please provide us some details </string>
+    <string name="empty_list_text">Sorry, no data available!</string>
 </resources>
