@@ -64,31 +64,33 @@ public class StateFragment extends Fragment {
         stateBarModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Integer>>() {
             @Override
             public void onChanged(List<Integer> integers) {
-                confirmedTV.setText(Integer.toString(integers.get(0)));
-                if(integers.get(1) == 0){
-                    confirmedDeltaTV.setVisibility(View.GONE);
-                }else {
-                    confirmedDeltaTV.setVisibility(View.VISIBLE);
-                    confirmedDeltaTV.setText("+"+integers.get(1));
-                }
+                if(!integers.isEmpty()){
+                    confirmedTV.setText(Integer.toString(integers.get(0)));
+                    if(integers.get(1) == 0){
+                        confirmedDeltaTV.setVisibility(View.GONE);
+                    }else {
+                        confirmedDeltaTV.setVisibility(View.VISIBLE);
+                        confirmedDeltaTV.setText("+"+integers.get(1));
+                    }
 
-                recoveredTV.setText(Integer.toString(integers.get(2)));
-                if(integers.get(3) == 0){
-                    recoveredDeltaTV.setVisibility(View.GONE);
-                }else{
-                    recoveredDeltaTV.setVisibility(View.VISIBLE);
-                    recoveredDeltaTV.setText("+"+integers.get(3));
-                }
+                    recoveredTV.setText(Integer.toString(integers.get(2)));
+                    if(integers.get(3) == 0){
+                        recoveredDeltaTV.setVisibility(View.GONE);
+                    }else{
+                        recoveredDeltaTV.setVisibility(View.VISIBLE);
+                        recoveredDeltaTV.setText("+"+integers.get(3));
+                    }
 
-                deceasedTV.setText(Integer.toString(integers.get(4)));
-                if(integers.get(5) == 0){
-                    deceasedDeltaTV.setVisibility(View.GONE);
-                }else{
-                    recoveredDeltaTV.setVisibility(View.VISIBLE);
-                    deceasedDeltaTV.setText("+"+integers.get(5));
-                }
+                    deceasedTV.setText(Integer.toString(integers.get(4)));
+                    if(integers.get(5) == 0){
+                        deceasedDeltaTV.setVisibility(View.GONE);
+                    }else{
+                        recoveredDeltaTV.setVisibility(View.VISIBLE);
+                        deceasedDeltaTV.setText("+"+integers.get(5));
+                    }
 //                Log.d("stateFrg", Integer.toString(integers.get(6)) + " " +  Integer.toString(7));
-                lastUpdatedTv.setText(getTimeString(Integer.toString(integers.get(6)), Integer.toString(integers.get(7))));
+                    lastUpdatedTv.setText(getTimeString(Integer.toString(integers.get(6)), Integer.toString(integers.get(7))));
+                }
 
             }
         });
@@ -100,17 +102,20 @@ public class StateFragment extends Fragment {
         model.getData().observe(getViewLifecycleOwner(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
+                if(!locations.isEmpty()){
+                    Collections.sort(locations, new Comparator<Location>() {
+                        @Override
+                        public int compare(Location o1, Location o2) {
+                            return Integer.compare(o1.getmCount(), o2.getmCount());
+                        }
+                    });
+                    Collections.reverse(locations);
 
-                Collections.sort(locations, new Comparator<Location>() {
-                    @Override
-                    public int compare(Location o1, Location o2) {
-                        return Integer.compare(o1.getmCount(), o2.getmCount());
-                    }
-                });
-                Collections.reverse(locations);
-                
-                mAdapter = new ListViewAdapter(getContext(), locations);
-                listView.setAdapter(mAdapter);
+                    mAdapter = new ListViewAdapter(getContext(), locations);
+                    listView.setAdapter(mAdapter);
+                }
+
+
             }
         });
     }
