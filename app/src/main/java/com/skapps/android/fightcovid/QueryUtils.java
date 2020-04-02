@@ -43,10 +43,13 @@ public class QueryUtils {
         return url;
     }
 
-    public static List<Location> fetchCovidStateData(String requestUrl) {
+    public static List<Location> fetchCovidStateData(String requestUrl, String cstate) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
+        if(cstate == null){
+            cstate = preferredState; //TODO remove if cstate is always provided
+        }
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
@@ -57,10 +60,10 @@ public class QueryUtils {
 
 
         // Return the list of {@link Earthquake}s
-        return extractFromJsonStateData(jsonResponse);
+        return extractFromJsonStateData(jsonResponse, cstate);
     }
 
-    private static List<Location> extractFromJsonStateData(String covidJson) {
+    private static List<Location> extractFromJsonStateData(String covidJson, String cstate) {
 
         if (TextUtils.isEmpty(covidJson)) {
             return null;
@@ -74,7 +77,7 @@ public class QueryUtils {
             Iterator<String> iter = baseJsonResponse.keys();
             while (iter.hasNext()) {
                 String key = iter.next();
-                if(key.equals(preferredState)){
+                if(key.equals(cstate)){
                     JSONObject value = (JSONObject)baseJsonResponse.get(key);
                     JSONObject districtData = value.getJSONObject("districtData");
                     Iterator<String> iterDistrict = districtData.keys();

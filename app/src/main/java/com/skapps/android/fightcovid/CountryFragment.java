@@ -1,8 +1,8 @@
 package com.skapps.android.fightcovid;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +60,9 @@ public class CountryFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView state=  view.findViewById(R.id.primary_location);
                 String locat = state.getText().toString();
-
-                Log.d("countryfragOncreate", locat);
+                Intent intent = new Intent(getActivity(), StateDetails.class);
+                intent.putExtra("STATE_NAME", locat);
+                startActivity(intent);
             }
         });
 
