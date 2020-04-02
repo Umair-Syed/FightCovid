@@ -27,7 +27,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private Spinner spinnerDistrict;
     private Button button;
     //constants
-    public static final String SHARED_PREFS="SHARED_PREF";
+    public static final String SHARED_PREFS1="SHARED_PREF";
+    public static final String SHARED_PREFS2="SHARED_PREF";
     public static final String DISTRICT="districtsaved";
     public static final String STATE="statesaved";
 
@@ -75,13 +76,13 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         // variable to store the value corresponded to whether selection of sate and district is none or not
         int checkState =spinnerState.getSelectedItemPosition();
         int checkDistrict =spinnerState.getSelectedItemPosition();
-        if(checkDistrict !=0){
+        if(checkState !=0){
             state = parent.getItemAtPosition(position).toString();
-            Toast.makeText(getApplicationContext(),state+"selected",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),state+" selected",Toast.LENGTH_SHORT).show();
         }
         if(checkDistrict!=0){
             district = parent.getItemAtPosition(position).toString();
-            Toast.makeText(getApplicationContext(),district+"selected",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),district+" selected",Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -94,10 +95,12 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     }
     // initialization and editing of shared preferences and then saving it
     public void savedata(){
-        SharedPreferences sharedPref = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(SHARED_PREFS1,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(DISTRICT, district);
-        editor.putString(STATE, state);
+        SharedPreferences sharedPref2 = getSharedPreferences(SHARED_PREFS2,MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sharedPref.edit();
+        editor2.putString(STATE, state);
         editor.commit();
     }
 }
