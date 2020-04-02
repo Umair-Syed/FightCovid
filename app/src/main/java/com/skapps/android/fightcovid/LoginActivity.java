@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private Button button;
     //constants
     public static final String SHARED_PREFS1="SHARED_PREF";
-    public static final String SHARED_PREFS2="SHARED_PREF";
+    public static final String SHARED_PREFS2="SHARED_PREFn";
     public static final String DISTRICT="districtsaved";
     public static final String STATE="statesaved";
 
@@ -95,12 +95,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     }
     // initialization and editing of shared preferences and then saving it
     public void savedata(){
+        SharedPreferences sharedPref2 = getSharedPreferences(SHARED_PREFS2,MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sharedPref2.edit();
+        editor2.putString(STATE, state);
+        editor2.commit();
         SharedPreferences sharedPref = getSharedPreferences(SHARED_PREFS1,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(DISTRICT, district);
-        SharedPreferences sharedPref2 = getSharedPreferences(SHARED_PREFS2,MODE_PRIVATE);
-        SharedPreferences.Editor editor2 = sharedPref.edit();
-        editor2.putString(STATE, state);
         editor.commit();
+
     }
 }

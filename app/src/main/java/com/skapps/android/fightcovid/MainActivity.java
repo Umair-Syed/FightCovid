@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import static com.skapps.android.fightcovid.LoginActivity.DISTRICT;
-import static com.skapps.android.fightcovid.LoginActivity.SHARED_PREFS;
+import static com.skapps.android.fightcovid.LoginActivity.SHARED_PREFS2;
+import static com.skapps.android.fightcovid.LoginActivity.SHARED_PREFS1;
 import static com.skapps.android.fightcovid.LoginActivity.STATE;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         // calling the method to retrieve the shared preference
         loadData();
 
+
+    }
+    public void loadData(){
+        //reading the sharedpreferenced data
+        SharedPreferences sharedPref1 = getSharedPreferences(SHARED_PREFS1,MODE_PRIVATE);
+        dis=sharedPref1.getString(DISTRICT,"nn");
+        SharedPreferences sharedPref2 = getSharedPreferences(SHARED_PREFS2,MODE_PRIVATE);
+        txt=sharedPref2.getString(STATE,"nn");
+        Toast.makeText(getApplicationContext(),txt+dis,Toast.LENGTH_SHORT).show();
+
         ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         viewPager2.setAdapter(new PagerAdapter(this));
 
@@ -39,19 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 if(position == 1){
                     tab.setText("India");
                 }else{
-                    tab.setText("Your State");
+                    tab.setText(txt);
                 }
             }
         });
         tabLayoutMediator.attach();
-
-
-    }
-    public void loadData(){
-        //reading the sharedpreferenced data
-        SharedPreferences sharedPref = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        dis=sharedPref.getString(DISTRICT,"nn");
-        txt=sharedPref.getString(STATE,"nn");
-        Toast.makeText(getApplicationContext(),txt+dis,Toast.LENGTH_SHORT).show();
     }
 }
