@@ -28,7 +28,7 @@
         android:textColor="#2B3D4D"
         android:textSize="24sp"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginEnd="16sp"
         tools:text="Srinagar" />
 

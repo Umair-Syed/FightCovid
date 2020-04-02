@@ -12,9 +12,36 @@
         android:layout_width="match_parent"
         android:layout_height="74dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="5"
+                android:gravity="end"
+                android:text="Last Updated"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/updated_on_tv_state"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="12dp"
+                tools:text="02/04/2020 16:02" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewState"
             style="@style/statusTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +53,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/confirmed_count_state"
+            android:id="@+id/confirmed_count_State"
             style="@style/CountStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,8 +61,8 @@
             android:text="14"
             android:textColor="@color/confirmed_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/textViewState"
+            app:layout_constraintTop_toBottomOf="@+id/textViewState" />
 
         <TextView
             android:id="@+id/confirmed_count_state_delta"
@@ -44,13 +71,13 @@
             android:layout_gravity="bottom"
             android:text="+2"
             android:textColor="@color/confirmed_color"
-            app:layout_constraintBottom_toBottomOf="@+id/confirmed_count_state"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/confirmed_count_state"
-            app:layout_constraintTop_toTopOf="@+id/confirmed_count_state" />
+            app:layout_constraintBottom_toBottomOf="@+id/confirmed_count_State"
+            app:layout_constraintEnd_toEndOf="@+id/textViewState"
+            app:layout_constraintStart_toEndOf="@+id/confirmed_count_State"
+            app:layout_constraintTop_toTopOf="@+id/confirmed_count_State" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView3State"
             style="@style/statusTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,8 +85,8 @@
             android:layout_marginTop="16dp"
             android:text="RECOVERED"
             android:textColor="@color/recovered_color"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/textView4State"
+            app:layout_constraintStart_toEndOf="@+id/textViewState"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -72,8 +99,8 @@
             android:text="10"
             android:textColor="@color/recovered_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintStart_toStartOf="@+id/textView3State"
+            app:layout_constraintTop_toBottomOf="@+id/textView3State" />
 
         <TextView
             android:id="@+id/recovered_count_state_delta"
@@ -83,12 +110,12 @@
             android:text="+3"
             android:textColor="@color/recovered_color"
             app:layout_constraintBottom_toBottomOf="@+id/recovered_count_state"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/textView3State"
             app:layout_constraintStart_toEndOf="@+id/recovered_count_state"
             app:layout_constraintTop_toTopOf="@+id/recovered_count_state" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView4State"
             style="@style/statusTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,8 +137,8 @@
             android:text="20"
             android:textColor="@color/deceased_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintStart_toStartOf="@+id/textView4State"
+            app:layout_constraintTop_toBottomOf="@+id/textView4State" />
 
 
         <TextView
@@ -122,11 +149,33 @@
             android:text="+1"
             android:textColor="@color/deceased_color"
             app:layout_constraintBottom_toBottomOf="@+id/deceased_count_state"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="@+id/textView4State"
             app:layout_constraintStart_toEndOf="@+id/deceased_count_state"
             app:layout_constraintTop_toTopOf="@+id/deceased_count_state" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textlines"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Cases"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:paddingStart="2dp"
+            android:text="District" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list_state"

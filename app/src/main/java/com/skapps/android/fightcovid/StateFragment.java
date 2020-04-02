@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import static com.skapps.android.fightcovid.QueryUtils.getTimeString;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,12 +51,14 @@ public class StateFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final TextView confirmedTV = getView().findViewById(R.id.confirmed_count_state);
+        //Filling status bar of state fragment with data
+        final TextView confirmedTV = getView().findViewById(R.id.confirmed_count_State);
         final TextView confirmedDeltaTV = getView().findViewById(R.id.confirmed_count_state_delta);
         final TextView recoveredTV = getView().findViewById(R.id.recovered_count_state);
         final TextView recoveredDeltaTV = getView().findViewById(R.id.recovered_count_state_delta);
         final TextView deceasedTV = getView().findViewById(R.id.deceased_count_state);
         final TextView deceasedDeltaTV = getView().findViewById(R.id.deceased_count_state_delta);
+        final TextView lastUpdatedTv = getView().findViewById(R.id.updated_on_tv_state);
 
         StateStatusVM stateBarModel = new ViewModelProvider(this).get(StateStatusVM.class);
         stateBarModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Integer>>() {
@@ -83,11 +87,13 @@ public class StateFragment extends Fragment {
                     recoveredDeltaTV.setVisibility(View.VISIBLE);
                     deceasedDeltaTV.setText("+"+integers.get(5));
                 }
+//                Log.d("stateFrg", Integer.toString(integers.get(6)) + " " +  Integer.toString(7));
+                lastUpdatedTv.setText(getTimeString(Integer.toString(integers.get(6)), Integer.toString(integers.get(7))));
 
             }
         });
 
-
+        //Populating list view in state Fragment with data
         final ListView listView = getView().findViewById(R.id.list_state);
 
         JsonViewModel model = new ViewModelProvider(this).get(JsonViewModel.class);
@@ -108,4 +114,6 @@ public class StateFragment extends Fragment {
             }
         });
     }
+
+
 }
