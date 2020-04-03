@@ -72,6 +72,15 @@ public class MainActivity extends AppCompatActivity{
             case R.id.about_us:
                 startActivity(new Intent(this, AboutUs.class));
                 return true;
+            case R.id.share:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String shareBody = "Use this app to get latest updates on Covid19 in India";
+                String shareSub = "Install this";
+                intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                intent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(intent, "Share using"));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

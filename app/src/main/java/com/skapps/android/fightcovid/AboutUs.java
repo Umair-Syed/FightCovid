@@ -24,7 +24,7 @@ public class AboutUs extends AppCompatActivity {
         View aboutPage = new AboutPage(this)
                 .setDescription(description)
                 .isRTL(false)
-                .setImage(R.drawable.ic_star)
+                .setImage(R.mipmap.ic_launcher_foreground)
                 .addItem(new Element().setTitle("Version 1.0"))
                 .addGroup("Connect with us")
                 .addEmail("syedumairandrabi66@gmail.com", "Contact us")
