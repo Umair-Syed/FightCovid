@@ -13,16 +13,23 @@ import android.view.MenuItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.concurrent.TimeUnit;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.work.Constraints;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 public class MainActivity extends AppCompatActivity{
 
     public static String mSelectedState;
     public static String FIRST_RUN_PREF_KEY = "isFirstRun";
     public static String FROM_MENU_PREF_KEY = "fromMenu";
+
 
 
     @Override
@@ -48,6 +55,16 @@ public class MainActivity extends AppCompatActivity{
             showDialog();
         }
 
+        //For background service for notifications
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build();
+
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(UpdateWorker.class,
+                20, TimeUnit.MINUTES).setConstraints(constraints).addTag("Periodic")
+                .setInitialDelay(5, TimeUnit.MINUTES).build();
+
+        WorkManager.getInstance(this).enqueue(periodicWorkRequest);
     }
 
     @Override
@@ -75,8 +92,8 @@ public class MainActivity extends AppCompatActivity{
             case R.id.share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String shareBody = "Use this app to get latest updates on Covid19 in India";
-                String shareSub = "Install this";
+                String shareBody = "https://play.google.com/store/apps/details?id=com.skapps.android.fightcovid";
+                String shareSub = "Use this app to get latest updates on Covid19 in India";
                 intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 intent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(intent, "Share using"));

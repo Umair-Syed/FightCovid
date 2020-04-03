@@ -26,6 +26,9 @@ import java.util.List;
 public class QueryUtils {
 
 //    public static String preferredState = "Maharashtra";
+    public static String CONFIRMED_UPDATE_WORK_KEY = "confirmUpdateWorkKey";
+    public static String CONFIRMED_INT_STATE_KEY = "confirmedIntKey";
+    public static String CONFIRMED_INT_COUNTRY_KEY = "confirmedIntKeyCountry";
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 

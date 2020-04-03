@@ -92,6 +92,7 @@ public class CountryFragment extends Fragment {
 
                     if (!integers.isEmpty()) {
                         confirmedTV.setText(Integer.toString(integers.get(0)));
+                        saveIntInPrefCountry(integers.get(0));
                         if (integers.get(1) == 0) {
                             confirmedDeltaTV.setVisibility(View.GONE);
                         } else {
@@ -156,5 +157,11 @@ public class CountryFragment extends Fragment {
         } else {
             return false;
         }
+    }
+
+    private void saveIntInPrefCountry(int value){
+        getContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
+                .edit().putInt(QueryUtils.CONFIRMED_INT_COUNTRY_KEY, value).apply();
+
     }
 }

@@ -21,8 +21,10 @@ android {
 
 dependencies {
     def lifecycle_version = "2.2.0"
-    def arch_version = "2.1.0"
+    def work_version = "2.3.4"
 
+
+    implementation "androidx.work:work-runtime:$work_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation fileTree(dir: 'libs', include: ['*.jar'])

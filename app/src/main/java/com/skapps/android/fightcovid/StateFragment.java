@@ -37,6 +37,7 @@ public class StateFragment extends Fragment {
 
     private ListViewAdapter mAdapter;
 
+
     public StateFragment() {
         // Required empty public constructor
     }
@@ -74,6 +75,7 @@ public class StateFragment extends Fragment {
                 public void onChanged(List<Integer> integers) {
                     if (!integers.isEmpty()) {
                         confirmedTV.setText(Integer.toString(integers.get(0)));
+                        saveIntInPref(integers.get(0));
                         if (integers.get(1) == 0) {
                             confirmedDeltaTV.setVisibility(View.GONE);
                         } else {
@@ -139,6 +141,12 @@ public class StateFragment extends Fragment {
         } else {
             return false;
         }
+    }
+
+    private void saveIntInPref(int value){
+        getContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
+                .edit().putInt(QueryUtils.CONFIRMED_INT_STATE_KEY, value).apply();
+
     }
 
 
