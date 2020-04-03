@@ -34,7 +34,7 @@ public class SelectedStateVM extends ViewModel {
 
             @Override
             protected List<Location> doInBackground(Void... voids) {
-                return QueryUtils.fetchCovidStateData("https://api.covid19india.org/state_district_wise.json", sState);  //TODO provice cstate from preferences
+                return QueryUtils.fetchCovidStateData("https://api.covid19india.org/state_district_wise.json", sState);
             }
 
             @Override

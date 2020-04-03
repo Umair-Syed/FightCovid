@@ -18,4 +18,8 @@
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
+    <style name="NoActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

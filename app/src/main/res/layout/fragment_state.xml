@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StateFragment">
+    tools:context=".StateFragment"
+    android:id="@+id/state_fragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -177,10 +178,10 @@
 
     </LinearLayout>
 
+
     <ListView
         android:id="@+id/list_state"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:entries="@android:array/imProtocols" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

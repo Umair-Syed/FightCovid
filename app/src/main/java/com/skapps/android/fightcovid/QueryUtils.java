@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class QueryUtils {
 
-    public static String preferredState = "Maharashtra";
+//    public static String preferredState = "Maharashtra";
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
@@ -46,10 +46,6 @@ public class QueryUtils {
     public static List<Location> fetchCovidStateData(String requestUrl, String cstate) {
         // Create URL object
         URL url = createUrl(requestUrl);
-
-        if(cstate == null){
-            cstate = preferredState; //TODO remove if cstate is always provided
-        }
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
@@ -71,17 +67,17 @@ public class QueryUtils {
 
         List<Location> locations = new ArrayList<>();
 
-        try{
+        try {
             JSONObject baseJsonResponse = new JSONObject(covidJson);
 
             Iterator<String> iter = baseJsonResponse.keys();
             while (iter.hasNext()) {
                 String key = iter.next();
-                if(key.equals(cstate)){
-                    JSONObject value = (JSONObject)baseJsonResponse.get(key);
+                if (key.equals(cstate)) {
+                    JSONObject value = (JSONObject) baseJsonResponse.get(key);
                     JSONObject districtData = value.getJSONObject("districtData");
                     Iterator<String> iterDistrict = districtData.keys();
-                    while(iterDistrict.hasNext()) {
+                    while (iterDistrict.hasNext()) {
                         String districtKey = iterDistrict.next();
                         JSONObject data = districtData.getJSONObject(districtKey);
                         int count = data.getInt("confirmed");
@@ -90,7 +86,7 @@ public class QueryUtils {
                 }
 
             }
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the JsonStateData JSON results", e);
         }
 
@@ -123,19 +119,19 @@ public class QueryUtils {
 
         List<Location> locationsStates = new ArrayList<>();
 
-        try{
+        try {
             JSONObject baseJsonResponse = new JSONObject(covidJson);
             JSONArray statesArray = baseJsonResponse.getJSONArray("statewise");
 
-            for(int i = 0; i < statesArray.length(); i++){
+            for (int i = 0; i < statesArray.length(); i++) {
                 JSONObject state = statesArray.getJSONObject(i);
-                if(!state.getString("state").equals("Total")){
+                if (!state.getString("state").equals("Total")) {
                     locationsStates.add(new Location(state.getInt("confirmed"), state.getString("state")));
                 }
             }
 
 
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the JsonCountryData JSON results", e);
         }
 
@@ -143,7 +139,7 @@ public class QueryUtils {
 
     }
 
-    public static List<Integer> fetchStateBarData (String requestUrl) {
+    public static List<Integer> fetchStateBarData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -165,15 +161,16 @@ public class QueryUtils {
             return null;
         }
 
+
         List<Integer> data = new ArrayList<>();
 
-        try{
-           JSONObject baseJsonResponse = new JSONObject(covidJson);
+        try {
+            JSONObject baseJsonResponse = new JSONObject(covidJson);
             JSONArray stateswise = baseJsonResponse.getJSONArray("statewise");
 
-            for(int i = 0; i < stateswise.length(); i++){
+            for (int i = 0; i < stateswise.length(); i++) {
                 JSONObject state = stateswise.getJSONObject(i);
-                if (state.getString("state").equals(preferredState)){
+                if (state.getString("state").equals(MainActivity.mSelectedState)) {
                     data.add(state.getInt("confirmed"));
                     data.add(state.getJSONObject("delta").getInt("confirmed"));
                     data.add(state.getInt("recovered"));
@@ -185,7 +182,7 @@ public class QueryUtils {
                 }
             }
 
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the JsonStateBarData JSON results", e);
         }
         return data;
@@ -193,8 +190,7 @@ public class QueryUtils {
     }
 
 
-
-    public static List<Integer> fetchCountryBarData (String requestUrl) {
+    public static List<Integer> fetchCountryBarData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -218,7 +214,7 @@ public class QueryUtils {
 
         List<Integer> data = new ArrayList<>();
 
-        try{
+        try {
             JSONObject baseJsonResponse = new JSONObject(covidJson);
             JSONArray values = baseJsonResponse.getJSONArray("statewise");
             JSONArray deltaValues = baseJsonResponse.getJSONArray("key_values");
@@ -233,13 +229,12 @@ public class QueryUtils {
             data.add(getDateIntFromString(countryStatusDeltaData.getString("lastupdatedtime")));
             data.add(getTimeIntFromString(countryStatusDeltaData.getString("lastupdatedtime")));
 
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the JsonCountryBarData JSON results", e);
         }
         return data;
 
     }
-
 
 
     private static String makeHttpRequest(URL url) throws IOException {
@@ -297,11 +292,11 @@ public class QueryUtils {
         return output.toString();
     }
 
-    private static int getDateIntFromString(String time){
+    private static int getDateIntFromString(String time) {
         int count = 0;
         StringBuilder newTime = new StringBuilder();
-        for(int i=0; i < time.length(); i++){
-            if(count < 8 && Character.isDigit(time.charAt(i))){
+        for (int i = 0; i < time.length(); i++) {
+            if (count < 8 && Character.isDigit(time.charAt(i))) {
                 count++;
                 newTime.append(time.charAt(i));
             }
@@ -310,10 +305,10 @@ public class QueryUtils {
         return Integer.parseInt(newTime.toString());
     }
 
-    private static int getTimeIntFromString(String time){
+    private static int getTimeIntFromString(String time) {
         StringBuilder newTime = new StringBuilder();
-        for(int i=11; i < time.length()-2; i++){
-            if(Character.isDigit(time.charAt(i))){
+        for (int i = 11; i < time.length() - 2; i++) {
+            if (Character.isDigit(time.charAt(i))) {
                 newTime.append(time.charAt(i));
             }
         }
@@ -321,34 +316,49 @@ public class QueryUtils {
         return Integer.parseInt(newTime.toString());
     }
 
-    public static String getTimeString(String date, String time){
-
+    public static String getTimeString(String date, String time) {
         StringBuilder newDate = new StringBuilder();
-        if(date.length() == 8){
-            int n = Integer.parseInt(date.substring(2,4));
-            newDate.append(date.charAt(0))
-                    .append(date.charAt(1))
-                    .append(' ')
-                    .append(new DateFormatSymbols().getMonths()[n-1])
-                    .append(" ").append(date.substring(4))
-                    .append(" - ")
-                    .append(time, 0, 2).append(":")
-                    .append(time,2,4);
-        }else{
-            int n = Integer.parseInt(date.substring(1,3));
-            newDate.append('0')
-                    .append(date.charAt(0))
-                    .append(' ')
-                    .append(new DateFormatSymbols().getMonths()[n-1])
-                    .append(" ").append(date.substring(3))
-                    .append(" - ")
-                    .append(time, 0, 2).append(":")
-                    .append(time,2,4);
+
+        try {
+            StringBuilder timeFormatted = new StringBuilder(time);
+            if (date.length() == 8) {
+                if (time.length() == 3)
+                    timeFormatted.insert(0, '0');
+
+                int n = Integer.parseInt(date.substring(2, 4));
+                newDate.append(date.charAt(0))
+                        .append(date.charAt(1))
+                        .append(' ')
+                        .append(new DateFormatSymbols().getMonths()[n - 1])
+                        .append(" ").append(date.substring(4))
+                        .append(" - ")
+                        .append(timeFormatted, 0, 2).append(":")
+                        .append(timeFormatted, 2, 4);
+
+            } else {
+                if (time.length() == 3)
+                    timeFormatted.insert(0, '0');
+
+                Log.d("utils", date + " " + time + " formated time " + timeFormatted);
+                int n = Integer.parseInt(date.substring(1, 3));
+                newDate.append('0')
+                        .append(date.charAt(0))
+                        .append(' ')
+                        .append(new DateFormatSymbols().getMonths()[n - 1])
+                        .append(" ").append(date.substring(3))
+                        .append(" - ")
+                        .append(timeFormatted, 0, 2).append(":")
+                        .append(timeFormatted, 2, 4);
+
+            }
+        }catch (Exception e){
+            newDate.append("");
+            Log.e("QueryUtils", "Time and date error" + e);
         }
+
 
         return newDate.toString();
     }
-
 
 
 }

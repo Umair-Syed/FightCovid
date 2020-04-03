@@ -1,6 +1,9 @@
 package com.skapps.android.fightcovid;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,73 +54,90 @@ public class StateFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //Filling status bar of state fragment with data
-        final TextView confirmedTV = getView().findViewById(R.id.confirmed_count_State);
-        final TextView confirmedDeltaTV = getView().findViewById(R.id.confirmed_count_state_delta);
-        final TextView recoveredTV = getView().findViewById(R.id.recovered_count_state);
-        final TextView recoveredDeltaTV = getView().findViewById(R.id.recovered_count_state_delta);
-        final TextView deceasedTV = getView().findViewById(R.id.deceased_count_state);
-        final TextView deceasedDeltaTV = getView().findViewById(R.id.deceased_count_state_delta);
-        final TextView lastUpdatedTv = getView().findViewById(R.id.updated_on_tv_state);
 
-        StateStatusVM stateBarModel = new ViewModelProvider(this).get(StateStatusVM.class);
-        stateBarModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Integer>>() {
-            @Override
-            public void onChanged(List<Integer> integers) {
-                if(!integers.isEmpty()){
-                    confirmedTV.setText(Integer.toString(integers.get(0)));
-                    if(integers.get(1) == 0){
-                        confirmedDeltaTV.setVisibility(View.GONE);
-                    }else {
-                        confirmedDeltaTV.setVisibility(View.VISIBLE);
-                        confirmedDeltaTV.setText("+"+integers.get(1));
-                    }
+        if(isConnected(getContext())) {
 
-                    recoveredTV.setText(Integer.toString(integers.get(2)));
-                    if(integers.get(3) == 0){
-                        recoveredDeltaTV.setVisibility(View.GONE);
-                    }else{
-                        recoveredDeltaTV.setVisibility(View.VISIBLE);
-                        recoveredDeltaTV.setText("+"+integers.get(3));
-                    }
 
-                    deceasedTV.setText(Integer.toString(integers.get(4)));
-                    if(integers.get(5) == 0){
-                        deceasedDeltaTV.setVisibility(View.GONE);
-                    }else{
-                        recoveredDeltaTV.setVisibility(View.VISIBLE);
-                        deceasedDeltaTV.setText("+"+integers.get(5));
-                    }
-//                Log.d("stateFrg", Integer.toString(integers.get(6)) + " " +  Integer.toString(7));
-                    lastUpdatedTv.setText(getTimeString(Integer.toString(integers.get(6)), Integer.toString(integers.get(7))));
-                }
+            //Filling status bar of state fragment with data
+            final TextView confirmedTV = getView().findViewById(R.id.confirmed_count_State);
+            final TextView confirmedDeltaTV = getView().findViewById(R.id.confirmed_count_state_delta);
+            final TextView recoveredTV = getView().findViewById(R.id.recovered_count_state);
+            final TextView recoveredDeltaTV = getView().findViewById(R.id.recovered_count_state_delta);
+            final TextView deceasedTV = getView().findViewById(R.id.deceased_count_state);
+            final TextView deceasedDeltaTV = getView().findViewById(R.id.deceased_count_state_delta);
+            final TextView lastUpdatedTv = getView().findViewById(R.id.updated_on_tv_state);
 
-            }
-        });
-
-        //Populating list view in state Fragment with data
-        final ListView listView = getView().findViewById(R.id.list_state);
-
-        JsonViewModel model = new ViewModelProvider(this).get(JsonViewModel.class);
-        model.getData().observe(getViewLifecycleOwner(), new Observer<List<Location>>() {
-            @Override
-            public void onChanged(List<Location> locations) {
-                if(!locations.isEmpty()){
-                    Collections.sort(locations, new Comparator<Location>() {
-                        @Override
-                        public int compare(Location o1, Location o2) {
-                            return Integer.compare(o1.getmCount(), o2.getmCount());
+            StateStatusVM stateBarModel = new ViewModelProvider(this).get(StateStatusVM.class);
+            stateBarModel.getData().observe(getViewLifecycleOwner(), new Observer<List<Integer>>() {
+                @Override
+                public void onChanged(List<Integer> integers) {
+                    if (!integers.isEmpty()) {
+                        confirmedTV.setText(Integer.toString(integers.get(0)));
+                        if (integers.get(1) == 0) {
+                            confirmedDeltaTV.setVisibility(View.GONE);
+                        } else {
+                            confirmedDeltaTV.setVisibility(View.VISIBLE);
+                            confirmedDeltaTV.setText("+" + integers.get(1));
                         }
-                    });
-                    Collections.reverse(locations);
 
-                    mAdapter = new ListViewAdapter(getContext(), locations);
-                    listView.setAdapter(mAdapter);
+                        recoveredTV.setText(Integer.toString(integers.get(2)));
+                        if (integers.get(3) == 0) {
+                            recoveredDeltaTV.setVisibility(View.GONE);
+                        } else {
+                            recoveredDeltaTV.setVisibility(View.VISIBLE);
+                            recoveredDeltaTV.setText("+" + integers.get(3));
+                        }
+
+                        deceasedTV.setText(Integer.toString(integers.get(4)));
+                        if (integers.get(5) == 0) {
+                            deceasedDeltaTV.setVisibility(View.GONE);
+                        } else {
+                            recoveredDeltaTV.setVisibility(View.VISIBLE);
+                            deceasedDeltaTV.setText("+" + integers.get(5));
+                        }
+//                Log.d("stateFrg", Integer.toString(integers.get(6)) + " " +  Integer.toString(7));
+                        lastUpdatedTv.setText(getTimeString(Integer.toString(integers.get(6)), Integer.toString(integers.get(7))));
+                    }
+
                 }
+            });
+
+            //Populating list view in state Fragment with data
+            final ListView listView = getView().findViewById(R.id.list_state);
+
+            JsonViewModel model = new ViewModelProvider(this).get(JsonViewModel.class);
+            model.getData().observe(getViewLifecycleOwner(), new Observer<List<Location>>() {
+                @Override
+                public void onChanged(List<Location> locations) {
+                    if (!locations.isEmpty()) {
+                        Collections.sort(locations, new Comparator<Location>() {
+                            @Override
+                            public int compare(Location o1, Location o2) {
+                                return Integer.compare(o1.getmCount(), o2.getmCount());
+                            }
+                        });
+                        Collections.reverse(locations);
+
+                        mAdapter = new ListViewAdapter(getContext(), locations);
+                        listView.setAdapter(mAdapter);
+                    }
 
 
-            }
-        });
+                }
+            });
+        }
+    }
+
+    private boolean isConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if ((wifiInfo != null && wifiInfo.isConnected()) || (mobileInfo != null && mobileInfo.isConnected())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
