@@ -84,6 +84,9 @@ public class MyWork extends Worker {
                 /**
                  * Update list ui after process finished.
                  */
+                //execute it in main threead
+                //TODO
+
                 protected void onPostExecute(String result) {
                     // NO NEED to use activity.runOnUiThread(), code execute here under UI thread.
 
@@ -103,7 +106,6 @@ public class MyWork extends Worker {
                    // ((ListActivity) activity).updateUI(data);
                 } ;
         }
-
 
 
                     //TODO
