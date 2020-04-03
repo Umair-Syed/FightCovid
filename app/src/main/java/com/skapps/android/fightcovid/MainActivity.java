@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
    private ProgressBar mProgressBar;
 
     // initialization of saved data by work manager after getting it from live data
-    private LiveData<List<WorkInfo>> mSavedWorkInfo;
-   //  mSavedWorkInfo = mWorkManager.getWorkInfosByTagLiveData(TAG_SYNC_DATA);
+      private LiveData<List<WorkInfo>> mSavedWorkInfo;
+    // mSavedWorkInfo = mWorkManager.getWorkInfosByTagLiveData(TAG_SYNC_DATA);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,9 +178,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public LiveData<List<WorkInfo>> getOutputWorkInfo() {
-        return mSavedWorkInfo;
-    }
+   // public LiveData<List<WorkInfo>> getOutputWorkInfo() {
+   //     return mSavedWorkInfo;
+   // }
     public void mrefresh(){
         ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         viewPager2.setAdapter(new PagerAdapter(this));
