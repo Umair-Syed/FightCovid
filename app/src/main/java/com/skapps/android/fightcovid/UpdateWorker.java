@@ -38,7 +38,7 @@ public class UpdateWorker extends Worker {
                 String state = getApplicationContext().getSharedPreferences(LaunchActivity.USER_CHOICE_PREF, Context.MODE_PRIVATE).getString(LaunchActivity.PREF_SELECTED_STATE_KEY, "Maharashtra");
                 int more = currentIntValue - previousValue;
                 NotificationUtils.notifyUserOfUpdate(getApplicationContext(), more + " more cases",
-                        more + "more cases from " + state);
+                        more + " more cases from " + state);
 
                 //updating previous value
                 getApplicationContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
@@ -56,13 +56,12 @@ public class UpdateWorker extends Worker {
             if(previousValueCountry != currentIntValue){
                 int more = currentIntValue - previousValueCountry;
                 NotificationUtils.notifyUserOfUpdate(getApplicationContext(), more + " more cases",
-                        more + "more cases from India");
+                        more + " more cases from India");
 
                 //updating previous value
                 getApplicationContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
                         .edit().putInt(QueryUtils.CONFIRMED_INT_COUNTRY_KEY, currentIntValue).apply();
             }
-
 
         } catch (Exception e) { // if no internet connection
             return Result.failure();
