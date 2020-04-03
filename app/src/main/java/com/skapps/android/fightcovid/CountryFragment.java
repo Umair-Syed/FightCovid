@@ -68,6 +68,7 @@ public class CountryFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        listView.setEmptyView(getView().findViewById(R.id.empty_view_country));
 
     }
 

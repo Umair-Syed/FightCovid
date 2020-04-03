@@ -107,6 +107,7 @@ public class StateFragment extends Fragment {
 
             //Populating list view in state Fragment with data
             final ListView listView = getView().findViewById(R.id.list_state);
+            listView.setEmptyView(getView().findViewById(R.id.empty_view_state));
 
             JsonViewModel model = new ViewModelProvider(this).get(JsonViewModel.class);
             model.getData().observe(getViewLifecycleOwner(), new Observer<List<Location>>() {

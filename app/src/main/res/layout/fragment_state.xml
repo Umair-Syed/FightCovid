@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="14"
+            android:text="0"
             android:textColor="@color/confirmed_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textViewState"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginEnd="8dp"
-            android:text="+2"
+            android:text="+0"
             android:textColor="@color/confirmed_color"
             app:layout_constraintBottom_toBottomOf="@+id/confirmed_count_State"
             app:layout_constraintEnd_toEndOf="@+id/textViewState"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:text="10"
+            android:text="0"
             android:textColor="@color/recovered_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView3State"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="+3"
+            android:text="+0"
             android:textColor="@color/recovered_color"
             app:layout_constraintBottom_toBottomOf="@+id/recovered_count_state"
             app:layout_constraintEnd_toEndOf="@+id/textView3State"
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:text="20"
+            android:text="0"
             android:textColor="@color/deceased_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView4State"
@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="+1"
+            android:text="+0"
             android:textColor="@color/deceased_color"
             app:layout_constraintBottom_toBottomOf="@+id/deceased_count_state"
             app:layout_constraintEnd_toEndOf="@+id/textView4State"
@@ -183,8 +183,13 @@
         android:id="@+id/list_state"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
+    <TextView
+        android:id="@+id/empty_view_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Please wait until it loads or click refresh"
+        android:textAppearance="?android:textAppearanceMedium"/>
 
 
 

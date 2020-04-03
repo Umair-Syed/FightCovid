@@ -63,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textViewCountry"
             app:layout_constraintTop_toBottomOf="@+id/textViewCountry"
-            tools:text="14" />
+            tools:text="0" />
 
         <TextView
             android:id="@+id/confirmed_count_country_delta"
@@ -76,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textViewCountry"
             app:layout_constraintStart_toEndOf="@+id/confirmed_count_country"
             app:layout_constraintTop_toTopOf="@+id/confirmed_count_country"
-            tools:text="+2" />
+            tools:text="+0" />
 
         <TextView
             android:id="@+id/textView3Country"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            tools:text="10"
+            tools:text="0"
             android:textColor="@color/recovered_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView3Country"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            tools:text="+3"
+            tools:text="+0"
             android:textColor="@color/recovered_color"
             app:layout_constraintBottom_toBottomOf="@+id/recovered_count_country"
             app:layout_constraintEnd_toEndOf="@+id/textView3Country"
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            tools:text="20"
+            tools:text="0"
             android:textColor="@color/deceased_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView4Country"
@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            tools:text="+1"
+            tools:text="+0"
             android:textColor="@color/deceased_color"
             app:layout_constraintBottom_toBottomOf="@+id/deceased_count_country"
             app:layout_constraintEnd_toEndOf="@+id/textView4Country"
@@ -181,6 +181,13 @@
         android:id="@+id/list_country"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/empty_view_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Please wait until it loads or click refresh"
+        android:textAppearance="?android:textAppearanceMedium"/>
 
 </LinearLayout>
 
