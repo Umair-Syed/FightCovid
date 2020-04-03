@@ -12,13 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutUs"></activity>
-        <activity android:name=".LaunchActivity"></activity>
+        <activity android:name=".AboutUs" />
+        <activity android:name=".LaunchActivity" />
         <activity android:name=".StateDetails" />
         <activity android:name=".MainActivity" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data android:scheme="http"
+                    android:host="www.covid19india.org"/>
             </intent-filter>
         </activity>
     </application>

@@ -183,9 +183,9 @@
         android:layout_height="match_parent"/>
     <TextView
         android:id="@+id/empty_view_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:text="Please wait until it loads or click refresh"
         android:textAppearance="?android:textAppearanceMedium"/>
 
