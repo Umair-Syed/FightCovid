@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/menu_refresh"
+        android:icon="@drawable/ic_update_24px"
+        android:orderInCategory="1"
+        android:title="@string/menu_refresh"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/change_state"
+        android:title="Change State"
+        app:showAsAction="never" />
+</menu>

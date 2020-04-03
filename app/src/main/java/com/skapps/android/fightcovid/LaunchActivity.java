@@ -50,6 +50,12 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+
+        if(getSharedPreferences("FIRST_RUN_PREF", MODE_PRIVATE).getBoolean(MainActivity.FROM_MENU_PREF_KEY, false)){
+            button.setText("Save");
+            findViewById(R.id.textView).setVisibility(View.INVISIBLE);
+        }
     }
 
 

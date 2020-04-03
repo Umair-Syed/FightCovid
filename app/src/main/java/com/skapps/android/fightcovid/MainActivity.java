@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -16,10 +18,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     public static String mSelectedState;
     public static String FIRST_RUN_PREF_KEY = "isFirstRun";
+    public static String FROM_MENU_PREF_KEY = "fromMenu";
 
 
     @Override
@@ -38,14 +41,39 @@ public class MainActivity extends AppCompatActivity {
         getSharedPreferences("FIRST_RUN_PREF", MODE_PRIVATE).edit()
                 .putBoolean(FIRST_RUN_PREF_KEY, false).apply();
 
+        //if Internet is connected then setup viewPager2 to load fragments otherwise ask for Internet
         if(isConnected(this)){
             setupviewPager2();
         }else {
             showDialog();
         }
 
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            // Check if user triggered a refresh:
+            case R.id.menu_refresh:
+                setupviewPager2();
+                return true;
+            case R.id.change_state:
+                getSharedPreferences("FIRST_RUN_PREF", MODE_PRIVATE).edit()
+                        .putBoolean(FROM_MENU_PREF_KEY, true).apply();
+                startActivity(new Intent(this, LaunchActivity.class));
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -100,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         tabLayoutMediator.attach();
+
     }
+
 
 }
