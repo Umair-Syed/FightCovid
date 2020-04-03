@@ -1,6 +1,12 @@
 package com.skapps.android.fightcovid;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -16,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private String dis;
     private ListViewAdapter mAdapter;
     public WorkManager mWorkManager;
+    Context ctx ;
 
    private JsonViewModel jsonViewModel;
    private ProgressBar mProgressBar;
@@ -56,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         // calling the method to retrieve the shared preference
         loadData();
         fetchData();
+       // mmnotify();
 
         // get VM
         jsonViewModel = new ViewModelProvider(this).get(JsonViewModel.class);
@@ -126,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         //Refresh data regularly by WorkerManager
         //fetching new update data
 
-
+        //mrefresh();
 
         ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         viewPager2.setAdapter(new PagerAdapter(this));
@@ -172,4 +181,58 @@ public class MainActivity extends AppCompatActivity {
     public LiveData<List<WorkInfo>> getOutputWorkInfo() {
         return mSavedWorkInfo;
     }
+    public void mrefresh(){
+        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
+        viewPager2.setAdapter(new PagerAdapter(this));
+
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+
+                if(position == 1){
+                    tab.setText("India");
+                }else{
+                    tab.setText(txt);
+                }
+            }
+        });
+        tabLayoutMediator.attach();
+    }
+
+//
+//             public void mmnotify(){
+//        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+//        String NOTIFICATION_CHANNEL_ID = "my_channel_id_01";
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_HIGH);
+//
+//            // Configure the notification channel.
+//            notificationChannel.setDescription("Channel description");
+//            notificationChannel.enableLights(true);
+//            notificationChannel.setLightColor(Color.RED);
+//            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+//            notificationChannel.enableVibration(true);
+//            notificationManager.createNotificationChannel(notificationChannel);
+//        }
+//
+//        // Resources res = ctx.getResources();
+//
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ctx, NOTIFICATION_CHANNEL_ID);
+//
+//        notificationBuilder.setAutoCancel(true)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setWhen(System.currentTimeMillis())
+//                .setSmallIcon(R.drawable.color_red)
+//                .setTicker("pending")
+//                //     .setPriority(Notification.PRIORITY_MAX)
+//                .setContentTitle("Default notification")
+//                .setContentText( " new cases in your state ")
+//                .setContentInfo("Info");
+//
+//    }
+
+
 }
+

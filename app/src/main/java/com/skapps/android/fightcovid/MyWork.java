@@ -38,14 +38,12 @@ import static com.skapps.android.fightcovid.QueryUtils.getTimeString;
 public class MyWork extends Worker {
 
     JsonViewModel jsonViewModel;
-
-
-   /// private static final String TAG = SyncDataWorker.class.getSimpleName();
-
+   // Context ctx = getActivity().getApplicationContext();
+    Application mApplication;
+    /// private static final String TAG = SyncDataWorker.class.getSimpleName();
     public MyWork(@NonNull Context appContext, @NonNull WorkerParameters workerParams) {
         super(appContext, workerParams);
 
-        Application mApplication;
     }
     @NonNull
     @Override
@@ -63,7 +61,7 @@ public class MyWork extends Worker {
             //create a call to network
 
             // calling the ViewModel
-
+           // (MainActivity)getApplicationContext()).mrefresh();
             // TODO
             //  jsonViewModel = ViewModelProviders.of(this, new  JsonViewModel(getActivity().getApplication(), "my awesome param")).get( JsonViewModel.class);
 

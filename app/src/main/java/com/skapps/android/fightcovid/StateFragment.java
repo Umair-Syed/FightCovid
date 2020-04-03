@@ -96,8 +96,8 @@ public class StateFragment extends Fragment {
                 SharedPreferences sharedPref1 = ctx.getSharedPreferences(SHARED_PREFS1, MODE_PRIVATE);
                 p = sharedPref1.getInt(CONFIRMED_CASES, 0);
 
-                int localVariableCC;
-                confirmedTV.setText(Integer.toString(localVariableCC = integers.get(0)));
+                int localVariableCC=integers.get(0);
+                confirmedTV.setText(Integer.toString(integers.get(0)));
                 if (localVariableCC == p) { } else {
                     // Notification zone
                     //Context ctx   = getActivity().getApplicationContext();
