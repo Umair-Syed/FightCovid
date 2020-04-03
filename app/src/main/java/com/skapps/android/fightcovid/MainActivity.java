@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.skapps.android.fightcovid.ViewModels.JsonViewModel;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    }
+
     public void loadData(){
         //reading the sharedpreferenced data
         SharedPreferences sharedPref1 = getSharedPreferences(SHARED_PREFS1,MODE_PRIVATE);

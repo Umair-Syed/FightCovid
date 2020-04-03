@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.skapps.android.fightcovid.ViewModels.JsonViewModel;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,8 +36,8 @@ public class MyWork extends Worker {
         //simulate slow work
         // TODO
         //  WorkerUtils.makeStatusNotification("Fetching Data", applicationContext);
-     ///   Log.i(TAG, "Fetching Data from Remote host");
-       // TODO
+        ///   Log.i(TAG, "Fetching Data from Remote host");
+        // TODO
         //  WorkerUtils.sleep();
 
         try {
@@ -43,20 +45,19 @@ public class MyWork extends Worker {
 
             // calling the ViewModel
 
-          // TODO
+            // TODO
             //  jsonViewModel = ViewModelProviders.of(this, new  JsonViewModel(this.getApplication(), "my awesome param")).get( JsonViewModel.class);
 
 
-
-          //TODO
+            //TODO
 //            if (response.isSuccessful() && response.body() != null && !response.body().isEmpty() && response.body().size() > 0) {
 ////
 ////                String data = WorkerUtils.toJson(response.body());
 ////                Log.i(TAG, "Json String from network " + data);
 ////
 ////
-               // TODO
-               // WorkerUtils.makeStatusNotification(applicationContext.getString(R.string.new_data_available), applicationContext);
+            // TODO
+            // WorkerUtils.makeStatusNotification(applicationContext.getString(R.string.new_data_available), applicationContext);
 //             if{
 //                return Result.success();}
 //           if {
@@ -71,7 +72,7 @@ public class MyWork extends Worker {
             // Thus if there were errors, we're return FAILURE
             Log.e(TAG, "Error fetching data", e);
             return Result.failure();
-        }
+        }  return null;
     }
 
 
