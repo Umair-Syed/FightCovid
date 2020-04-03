@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity{
                         .putBoolean(FROM_MENU_PREF_KEY, true).apply();
                 startActivity(new Intent(this, LaunchActivity.class));
                 return true;
+            case R.id.about_us:
+                startActivity(new Intent(this, AboutUs.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

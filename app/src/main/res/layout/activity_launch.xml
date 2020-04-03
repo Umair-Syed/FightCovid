@@ -60,15 +60,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-thin"
         android:text="Please choose your state, you will be notified of any updates"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        android:fontFamily="sans-serif-thin"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="0.827" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -88,6 +89,7 @@
             android:layout_weight="1"
             android:text="State"
             android:textColor="@android:color/white"
+
             android:textSize="25sp" />
 
         <Spinner
@@ -106,7 +108,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="124dp"
         android:backgroundTint="@color/colorAccent"
         android:gravity="center"
         android:text="NEXT"
@@ -120,14 +121,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
+        app:layout_constraintGuide_percent="0.43" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.81" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
