@@ -30,9 +30,6 @@ import static com.skapps.android.fightcovid.QueryUtils.getTimeString;
 
 
 /**
- * A simple {@link Fragment} subclass.
- */
-/**
  * Created by Syed Umair on 31/03/2020.
  */
 public class CountryFragment extends Fragment {
@@ -41,7 +38,6 @@ public class CountryFragment extends Fragment {
     private ListView listView;
 
     public CountryFragment() {
-        // Required empty public constructor
     }
 
 
@@ -49,9 +45,7 @@ public class CountryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_country, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_country, container, false);
     }
 
     @Override
@@ -122,10 +116,7 @@ public class CountryFragment extends Fragment {
                 }
             });
 
-
             //Filling List with data
-
-
             JsonViewModelCountry model = new ViewModelProvider(this).get(JsonViewModelCountry.class);
             model.getData().observe(getViewLifecycleOwner(), new Observer<List<Location>>() {
                 @Override

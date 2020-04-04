@@ -22,7 +22,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by Syed Umair on 31/03/2020.
  */
 public class JsonViewModel extends AndroidViewModel {
-//    private final JsonLiveData data;
+
     private MutableLiveData<List<Location>> loc = new MutableLiveData<>();
 
 

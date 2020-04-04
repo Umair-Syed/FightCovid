@@ -1,7 +1,6 @@
 package com.skapps.android.fightcovid;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,7 +13,8 @@ import androidx.work.WorkerParameters;
  */
 public class UpdateWorker extends Worker {
 
-
+    private static final int UPDATE_NOTIFICATION_ID_STATE = 3432;
+    private static final int UPDATE_NOTIFICATION_ID_COUNTRY = 3522;
 
     private int currentIntValue;
 
@@ -29,19 +29,17 @@ public class UpdateWorker extends Worker {
 
         try {
 
-            Toast.makeText(getApplicationContext(), "do work() called", Toast.LENGTH_SHORT).show();
-
             //for State
             List<Integer> newList = QueryUtils.fetchStateBarData("https://api.covid19india.org/data.json");
             currentIntValue = newList.get(0);
             int previousValue = getApplicationContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
                     .getInt(QueryUtils.CONFIRMED_INT_STATE_KEY, currentIntValue);
 
-            if(previousValue != currentIntValue){
+            if(previousValue < currentIntValue){
                 String state = getApplicationContext().getSharedPreferences(LaunchActivity.USER_CHOICE_PREF, Context.MODE_PRIVATE).getString(LaunchActivity.PREF_SELECTED_STATE_KEY, "Maharashtra");
                 int more = currentIntValue - previousValue;
                 NotificationUtils.notifyUserOfUpdate(getApplicationContext(), more + " more cases",
-                        more + " more cases from " + state);
+                        more + " more cases in " + state, UPDATE_NOTIFICATION_ID_STATE);
 
                 //updating previous value
                 getApplicationContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
@@ -56,10 +54,10 @@ public class UpdateWorker extends Worker {
             int previousValueCountry = getApplicationContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
                     .getInt(QueryUtils.CONFIRMED_INT_COUNTRY_KEY, currentIntValue);
 
-            if(previousValueCountry != currentIntValue){
+            if(previousValueCountry < currentIntValue){
                 int more = currentIntValue - previousValueCountry;
                 NotificationUtils.notifyUserOfUpdate(getApplicationContext(), more + " more cases",
-                        more + " more cases from India");
+                        more + " more cases in India", UPDATE_NOTIFICATION_ID_COUNTRY);
 
                 //updating previous value
                 getApplicationContext().getSharedPreferences(QueryUtils.CONFIRMED_UPDATE_WORK_KEY, Context.MODE_PRIVATE)
@@ -71,9 +69,8 @@ public class UpdateWorker extends Worker {
         }
 
 
-
-
         return Result.success();
+
     }
 
 }

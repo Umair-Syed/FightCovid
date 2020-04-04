@@ -27,6 +27,7 @@ public class ListViewAdapter extends ArrayAdapter<Location> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
@@ -34,15 +35,9 @@ public class ListViewAdapter extends ArrayAdapter<Location> {
         }
 
         Location currentLocation  = getItem(position);
-
-//        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + "1");
-
         TextView countView = listItemView.findViewById(R.id.count);
-
-//        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 3 ");
         countView.setText(Integer.toString(currentLocation.getmCount()));
 
-//        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 2 ");
 
         GradientDrawable magnitudeCircle = (GradientDrawable) countView.getBackground();
         int magnitudeColor = getMagnitudeColor(currentLocation.getmCount());

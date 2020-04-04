@@ -10,6 +10,9 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import static android.graphics.Color.RED;
+import static androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC;
+
 /**
  * Created by Syed Umair on 03/04/2020.
  */
@@ -17,10 +20,9 @@ public class NotificationUtils {
 
     private static final int UPDATE_USER_PENDING_INTENT_ID = 5353;
     private static final String UPDATE_USER_NOTIFICATION_CHANNEL_ID = "mainChannelID";
-    private static final int UPDATE_NOTIFICATION_ID = 3432;
 
 
-    public static void notifyUserOfUpdate(Context context, String title, String body){
+    public static void notifyUserOfUpdate(Context context, String title, String body, int id){
 
         NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -31,6 +33,9 @@ public class NotificationUtils {
                     UPDATE_USER_NOTIFICATION_CHANNEL_ID,
                     context.getString(R.string.main_notification_channel_name),
                     NotificationManager.IMPORTANCE_HIGH);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(RED);
+            mChannel.setLockscreenVisibility(VISIBILITY_PUBLIC);
             notificationManager.createNotificationChannel(mChannel);
         }
 
@@ -50,9 +55,8 @@ public class NotificationUtils {
         }
 
 
-        notificationManager.notify(UPDATE_NOTIFICATION_ID, notificationBuilder.build());
+        notificationManager.notify(id, notificationBuilder.build());
     }
-
 
 
     private static PendingIntent contentIntent(Context context){

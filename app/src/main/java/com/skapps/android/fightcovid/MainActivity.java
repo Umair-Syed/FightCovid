@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Boolean isFirstRun = getSharedPreferences("FIRST_RUN_PREF", MODE_PRIVATE)
+        boolean isFirstRun = getSharedPreferences("FIRST_RUN_PREF", MODE_PRIVATE)
                 .getBoolean(FIRST_RUN_PREF_KEY, true);
 
         if (isFirstRun) {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity{
 
         PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(UpdateWorker.class,
                 20, TimeUnit.MINUTES).setConstraints(constraints).addTag("Periodic")
-                .setInitialDelay(5, TimeUnit.MINUTES).build();
+                .setInitialDelay(10, TimeUnit.SECONDS).build();
 
         WorkManager.getInstance(this).enqueue(periodicWorkRequest);
     }
