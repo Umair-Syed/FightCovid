@@ -323,7 +323,18 @@ public class QueryUtils {
         StringBuilder newDate = new StringBuilder();
 
         try {
-            StringBuilder timeFormatted = new StringBuilder(time);
+
+            Log.d("QeryUtil", date + " " + time);
+            StringBuilder timeFormatted;
+            if(time.length() == 3){
+                timeFormatted = new StringBuilder("0"+time);
+            }else if(time.length() == 2){
+                timeFormatted = new StringBuilder("00"+time);
+            }else if(time.length() == 1){
+                timeFormatted = new StringBuilder("000"+time);
+            }else{
+                timeFormatted = new StringBuilder(time);
+            }
             if (date.length() == 8) {
                 if (time.length() == 3)
                     timeFormatted.insert(0, '0');
