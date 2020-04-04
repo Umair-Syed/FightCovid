@@ -2,7 +2,6 @@ package com.skapps.android.fightcovid;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +35,14 @@ public class ListViewAdapter extends ArrayAdapter<Location> {
 
         Location currentLocation  = getItem(position);
 
-        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + "1");
+//        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + "1");
 
         TextView countView = listItemView.findViewById(R.id.count);
 
-        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 3 ");
+//        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 3 ");
         countView.setText(Integer.toString(currentLocation.getmCount()));
 
-        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 2 ");
+//        Log.d("ListViewAdapter", currentLocation.getmCount() + " " + currentLocation.getmLocation() + " 2 ");
 
         GradientDrawable magnitudeCircle = (GradientDrawable) countView.getBackground();
         int magnitudeColor = getMagnitudeColor(currentLocation.getmCount());

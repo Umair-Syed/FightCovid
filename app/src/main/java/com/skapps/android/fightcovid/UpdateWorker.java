@@ -1,6 +1,7 @@
 package com.skapps.android.fightcovid;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class UpdateWorker extends Worker {
 
 
         try {
+
+            Toast.makeText(getApplicationContext(), "do work() called", Toast.LENGTH_SHORT).show();
 
             //for State
             List<Integer> newList = QueryUtils.fetchStateBarData("https://api.covid19india.org/data.json");
