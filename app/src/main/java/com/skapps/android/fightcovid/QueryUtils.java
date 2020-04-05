@@ -175,13 +175,14 @@ public class QueryUtils {
                 JSONObject state = stateswise.getJSONObject(i);
                 if (state.getString("state").equals(MainActivity.mSelectedState)) {
                     data.add(state.getInt("confirmed"));
-                    data.add(state.getJSONObject("delta").getInt("confirmed"));
+                    data.add(state.getInt("deltaconfirmed"));
                     data.add(state.getInt("recovered"));
-                    data.add(state.getJSONObject("delta").getInt("recovered"));
+                    data.add(state.getInt("deltarecovered"));
                     data.add(state.getInt("deaths"));
-                    data.add(state.getJSONObject("delta").getInt("deaths"));
+                    data.add(state.getInt("deltadeaths"));
                     data.add(getDateIntFromString(state.getString("lastupdatedtime")));
                     data.add(getTimeIntFromString(state.getString("lastupdatedtime")));
+
                 }
             }
 
@@ -220,17 +221,16 @@ public class QueryUtils {
         try {
             JSONObject baseJsonResponse = new JSONObject(covidJson);
             JSONArray values = baseJsonResponse.getJSONArray("statewise");
-            JSONArray deltaValues = baseJsonResponse.getJSONArray("key_values");
             JSONObject countryStatusData = values.getJSONObject(0);
-            JSONObject countryStatusDeltaData = deltaValues.getJSONObject(0);
             data.add(countryStatusData.getInt("confirmed"));
-            data.add(countryStatusDeltaData.getInt("confirmeddelta"));
+            data.add(countryStatusData.getInt("deltaconfirmed"));
             data.add(countryStatusData.getInt("recovered"));
-            data.add(countryStatusDeltaData.getInt("recovereddelta"));
+            data.add(countryStatusData.getInt("deltarecovered"));
             data.add(countryStatusData.getInt("deaths"));
-            data.add(countryStatusDeltaData.getInt("deceaseddelta"));
-            data.add(getDateIntFromString(countryStatusDeltaData.getString("lastupdatedtime")));
-            data.add(getTimeIntFromString(countryStatusDeltaData.getString("lastupdatedtime")));
+            data.add(countryStatusData.getInt("deltadeaths"));
+            data.add(getDateIntFromString(countryStatusData.getString("lastupdatedtime")));
+            data.add(getTimeIntFromString(countryStatusData.getString("lastupdatedtime")));
+
 
         } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the JsonCountryBarData JSON results", e);
@@ -336,8 +336,8 @@ public class QueryUtils {
                 timeFormatted = new StringBuilder(time);
             }
             if (date.length() == 8) {
-                if (time.length() == 3)
-                    timeFormatted.insert(0, '0');
+//                if (time.length() == 3)
+//                    timeFormatted.insert(0, '0');
 
                 int n = Integer.parseInt(date.substring(2, 4));
                 newDate.append(date.charAt(0))
@@ -350,8 +350,8 @@ public class QueryUtils {
                         .append(timeFormatted, 2, 4);
 
             } else {
-                if (time.length() == 3)
-                    timeFormatted.insert(0, '0');
+//                if (time.length() == 3)
+//                    timeFormatted.insert(0, '0');
 
                 Log.d("utils", date + " " + time + " formated time " + timeFormatted);
                 int n = Integer.parseInt(date.substring(1, 3));
