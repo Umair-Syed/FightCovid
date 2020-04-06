@@ -1,0 +1,3 @@
+Privacy Policy
+This app has nothing to do with user's personal data, therefore no personal data is collected.
+Only mobile internet is used to fetech data from "api.covid19india.org" which is an open source api and data is authentic.
