@@ -1,4 +1,4 @@
-[<h1>Download APK</h1>](https://docs.google.com/uc?export=download&id=1nV1uyZ5IL7-UrUTGaeubQyeh8iLo8poa)
+[<h1>Download APK</h1>](https://apkpure.com/p/com.skapps.android.fightcovid)
 
 <h1>Screen Shots</h1>
 
