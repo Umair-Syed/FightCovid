@@ -1,6 +1,5 @@
 [<h1>Download APK</h1>](https://apkpure.com/p/com.skapps.android.fightcovid)
 
-<h1>Screen Shots</h1>
 
 <h3>Screen Shots</h3>
 
