@@ -2,12 +2,12 @@
 
 <h1>Screen Shots</h1>
 
-1. ![1](/screenshots/logo.png)
+<h3>Screen Shots</h3>
 
-2. ![2](/screenshots/image1.jpg)
+<img src="/screenshots/logo.png" height="40%" width="40%" >
+<img src="/screenshots/image1.jpg" height="50%" width="50%" >
+<img src="/screenshots/image2.jpg" height="50%" width="50%" >
+<img src="/screenshots/image3.jpg" height="50%" width="50%" >
+<img src="/screenshots/image4.jpg" height="50%" width="50%" >
 
-3. ![3](/screenshots/image2.jpg)
 
-4. ![4](/screenshots/image3.jpg)
-
-5. ![5](/screenshots/image4.jpg)
