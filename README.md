@@ -1,3 +1,4 @@
+Data is fetched from https://www.covid19india.org/.
 [<h1>Download APK</h1>](https://apkpure.com/p/com.skapps.android.fightcovid)
 
 
