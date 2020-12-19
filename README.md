@@ -5,7 +5,7 @@ Data is fetched from https://www.covid19india.org/.
 <h3>Screen Shots</h3>
 
 <img src="/screenshots/logo.png" height="40%" width="40%" >
-<table>
+<table style="width:100%">
   <tr>
     <td><img src="/screenshots/image1.jpg" height="50%" width="50%" ></td>
     <td><img src="/screenshots/image2.jpg" height="50%" width="50%" ></td>
