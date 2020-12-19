@@ -7,7 +7,7 @@ Data is fetched from https://www.covid19india.org/.
 <img src="/screenshots/logo.png" height="40%" width="40%" >
 <table style="width:100%">
   <tr>
-    <td><img src="/screenshots/image1.jpg" height="100%%" width="100%" style="object-fit: contain"></td>
+    <td><img src="/screenshots/image1.jpg" height="100%" width="100%" style="object-fit: contain"></td>
     <td><img src="/screenshots/image2.jpg" height="100%" width="100%" ></td>
   </tr>
   
