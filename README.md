@@ -8,12 +8,12 @@ Data is fetched from https://www.covid19india.org/.
 <table style="width:100%">
   <tr>
     <td><img src="/screenshots/image1.jpg" height="50%" object-fit="cover"></td>
-    <td><img src="/screenshots/image2.jpg" height="100%" width="100%" ></td>
+    <td><img src="/screenshots/image2.jpg" height="50%" width="100%" ></td>
   </tr>
   
   <tr>
-    <td><img src="/screenshots/image3.jpg" height="50%" width="50%" ></td>
-    <td><img src="/screenshots/image4.jpg" height="50%" width="50%" ></td>
+    <td><img src="/screenshots/image3.jpg" height="50%" ></td>
+    <td><img src="/screenshots/image4.jpg" height="50%" ></td>
   </tr>
 </table>
 
