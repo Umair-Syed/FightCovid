@@ -5,18 +5,15 @@ Data is fetched from https://www.covid19india.org/.
 <h3>Screen Shots</h3>
 
 <img src="/screenshots/logo.png" height="40%" width="40%" >
-<table style="width:100%">
-  <tr>
-    <td><img src="/screenshots/image1.jpg" height="40%"></td>
-    <td><img src="/screenshots/image2.jpg" height="40%" ></td>
-  </tr>
-  
-  <tr>
-    <td><img src="/screenshots/image3.jpg" height="40%" ></td>
-    <td><img src="/screenshots/image4.jpg" height="40%" ></td>
-  </tr>
-</table>
 
+### Screenshots
+Welcome Page           | State Stats
+:-------------------------:|:-------------------------: 
+![](/screenshots/image1.jpg)  |  ![](/screenshots/image2.jpg)
+
+Country Stats           | Notification 
+:-------------------------:|:-------------------------: 
+![](/screenshots/image3.jpg)  |  ![](/screenshots/image4.jpg)
 
 
 
